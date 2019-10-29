@@ -1,6 +1,6 @@
 import sys
 import random
-
+from random import choice
 
 def anagram(word_one, word_two):
     if word_one != word_two:
@@ -26,8 +26,8 @@ def get_anagrams(dict_of_words, word):
 
 if __name__ == '__main__':
     words = open("/usr/share/dict/words","r").read().split("\n")
-    word = "listen"
-    word1 = "silent"
+    word = choice(words)
+    word1 = choice(words)
     dict_of_words = create_dict_hash(words)
     # print(dict_of_words)
     list_of_anagrams = get_anagrams(dict_of_words, word1)
