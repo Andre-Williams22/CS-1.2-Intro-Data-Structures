@@ -5,10 +5,10 @@ def new_histogram(words):
     '''return a new histogram'''
     histogram = {}
     for word in words:
-        if word not in histogram:
-            histogram[word] = 1
-        else:
+        if word in histogram:
             histogram[word] += 1
+        else:
+            histogram[word] = 1
     return histogram
 
 def unique_words(histogram):

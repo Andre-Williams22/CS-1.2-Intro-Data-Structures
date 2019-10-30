@@ -25,7 +25,7 @@ def get_word(file_name='sherlock.txt'):
     #         text.remove(word)
     #         text.append(word.lower().strip("(),!.""")) 
 
-def tuples_hist(words):
+def list_hist(words):
     word_list = []
     for word in words:
         word_found = False
@@ -33,6 +33,7 @@ def tuples_hist(words):
             if item[0] == word:
                 item[1] += 1
                 word_found = True
+
         if not word_found:
             word_list.append([word, 1])
     return word_list
@@ -40,4 +41,4 @@ def tuples_hist(words):
 
 if __name__ == '__main__':
     
-    print(tuples_hist(get_word()))
+    print(list_hist(get_word()))

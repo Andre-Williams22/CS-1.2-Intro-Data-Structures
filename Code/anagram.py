@@ -3,10 +3,10 @@ import random
 from random import choice
 
 def anagram(word_one, word_two):
-    if word_one != word_two:
-        return False
-    else:
+    if word_one == word_two:
         return True
+    else:
+        return False
 
 def create_dict_hash(words):
     dict = {}

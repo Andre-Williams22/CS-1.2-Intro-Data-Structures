@@ -3,6 +3,7 @@ from random import choice, randint
 from sys import argv
 import sys
 from anagram import anagram
+
 # takes an input
 #num = int(input("please type a number: "))
 
@@ -30,8 +31,6 @@ from anagram import anagram
 
 
 def read_words(words, number_of_words):
-    # path = "/usr/share/dict/words"
-    # words = get_set_words_from_file(path)
     words_list =[]
     for i in range(number_of_words):
         words_list.append(choice(words))
