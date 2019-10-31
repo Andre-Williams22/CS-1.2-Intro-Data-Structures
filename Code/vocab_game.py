@@ -2,9 +2,12 @@
 # Let's play a vocabulary game where user's guess the word and definition
 import random
 
-answer = input("Would you like to play: y or n ")
+#answer = input("Would you like to play a french vocabulary game? y or n: ")
 print(" ")
-while answer == 'y':
+print("_"*50)
+print("Welcome to the game.")
+print("Let's test your french vocabulary!")
+while True:
         
     hashtable = {'bonjour': 'hello', 'enchante': 'nice to meet you', 'jemapple': 'my name is', 'je': 'I', 'See you later': 'A plus tard'}
 
@@ -29,13 +32,17 @@ while answer == 'y':
         else:
             print("wrong")
             wrong += 1
-            
-            print('_'*25)
+        display = "SCORE: {} correct and {} wrong"
+        print(display.format(correct, wrong))
+        print('_'*25)
 
-    display = "SCORE: {} correct and {} wrong"
-    print(display.format(correct, wrong))
+    if wrong >= 3:
+        if input("play again: ") in "Yy":
+            wrong = 0
+            correct = 0 
+        else:
+            break
 
-    answer = input("Play again? ")
 print(" ")
 print("Thanks for playing")
 
