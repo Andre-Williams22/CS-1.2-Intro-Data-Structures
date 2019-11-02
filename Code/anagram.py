@@ -12,20 +12,21 @@ def create_dict_hash(words):
     dict = {}
     for i in range(len(words)):
         temp = sorted(words[i])
-        new = "".join(temp)
+        new = " ".join(temp)
         dict[str(new)] = str(words[i])
     return dict
 def get_anagrams(dict_of_words, word):
     result = list()
     word1 = sorted(list(word))
-    word1 = "".join(word1)
+    word1 = " ".join(word1)
     for key in dict_of_words.keys():
         if(key in word1):
             result.append(dict_of_words.get(key))
     return result
 
 if __name__ == '__main__':
-    words = open("/usr/share/dict/words","r").read().split("\n")
+    #words = open("/usr/share/dict/words","r").read().split("\n")
+    words = open("sherlock.txt", "r").read()
     word = choice(words)
     word1 = choice(words)
     dict_of_words = create_dict_hash(words)
