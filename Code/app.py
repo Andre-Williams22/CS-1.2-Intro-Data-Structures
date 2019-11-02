@@ -23,7 +23,7 @@ def index():
 @app.route("/search",methods=["POST"])
 def search():
     search_tweet = request.form.get("search_query")
-    # t = [[]]
+   
     t = []
     tweets = api.search(search_tweet, tweet_mode='extended')
     for tweet in tweets:
