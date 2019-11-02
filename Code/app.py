@@ -1,13 +1,13 @@
 from flask import Flask,render_template,request,jsonify
 import tweepy
 from textblob import TextBlob
+import os
 
+consumer_key = os.getenv('consumer_key')
+consumer_secret = os.getenv('consumer_secret')
 
-consumer_key = '9Ld9t9g9gZxKCOnLMIVPlsVUB'
-consumer_secret = 'zXKFx9KIfTDpVXcVtE6I5HfGkcIaAKF7fryXiYvXg4LKkaGfyI'
-
-access_token = '1027940289309286400-s4uhWJQ4Syol3KYDYzPejXR2QUPJiV'
-access_token_secret = 'vqgUaJFTj6syYbnTLrlwfAwRnV3wemjAYmp1Yj7R6n1kL'
+access_token = os.getenv('access_token')
+access_token_secret = os.getenv('access_token_secret')
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
