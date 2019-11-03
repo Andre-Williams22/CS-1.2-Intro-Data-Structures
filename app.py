@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route("/search",methods=["POST"])
 def search():
@@ -35,4 +35,4 @@ def search():
     return jsonify({"success":True,"tweets":t})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=os.getenv('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
