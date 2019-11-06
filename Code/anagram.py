@@ -16,8 +16,8 @@ def create_dict_hash(words):
         dict[str(new)] = str(words[i])
     return dict
 def get_anagrams(dict_of_words, word):
-    result = list()
-    word1 = sorted(list(word))
+    result = list() #creates a list
+    word1 = sorted(list(word)) # sorts list of words
     word1 = " ".join(word1)
     for key in dict_of_words.keys():
         if(key in word1):

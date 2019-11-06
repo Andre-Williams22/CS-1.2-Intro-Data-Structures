@@ -14,7 +14,7 @@ def sample_by_frequency(histogram):
     
     # for k,v in histogram.items():
     #     total += v
-     # Faster than code above for grabbing values in keys   
+    # Faster than code above for grabbing values in keys   
     for value in histogram.values():
         total += value
     
