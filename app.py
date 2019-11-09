@@ -8,7 +8,7 @@ from datetime import datetime
 import sys
 from histogram import new_histogram
 from sampler import sample_by_frequency
-import tweeter 
+#import tweeter 
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -39,12 +39,15 @@ class Display:
         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
 
 
+        return render_template('tweet.html')
 
 
-    def send_tweet(self):
-        message = self.message
-        tweeter.tweet(message)
-        return redirect(url_for('home'))
+
+
+    # def send_tweet(self):
+    #     message = self.message
+    #     tweeter.tweet(message)
+    #     return redirect(url_for('home'))
 
     def home(self):
         return render_template('home.html')
@@ -63,9 +66,9 @@ def tweet():
     disp.count = 7 #default
     return disp.tweet_page()
 
-@app.route('/send_tweet', methods=['POST'])
-def send_tweet():
-    return disp.send_tweet()
+# @app.route('/send_tweet', methods=['POST'])
+# def send_tweet():
+#     return disp.send_tweet()
 
 @app.route('/contact')
 def contact():
@@ -89,5 +92,9 @@ def contact():
 
 #     return jsonify({"success":True,"tweets":t})
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    app.run(debug=True, port=8080)
+    
 #     app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
+
+
