@@ -1,4 +1,4 @@
-from dictogram import *
+from dictogram import Dictogram
 import random
 import sys
 
