@@ -3,42 +3,104 @@
     <head>
         <meta charset="utf-8">
         <title>Tweet Generator</title>
-        <link rel="shortcut icon" href="static/images/bro_code_logo.jpeg">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="./static/base.css">
-        <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+       
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	
     </head>
     <body>
 
-        <!--NAVBAR-->
-        <nav class="navbar navbar-light navbar-expand-lg">
-            <!-- <img src="static/images/bro_code_logo.jpeg"> -->
-            <a class="navbar-brand text-light" href="/"> Bro Code</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<div class="container-fluid">
+	<a class="navbar-brand" href="/">Tweet Generator</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item-active">
+				<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="services.html">Product</a>
+			</li>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="contact.html">Connect</a>
+			</li>
+		</ul>
+	</div>
+</div>
+</nav>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav d-flex justify-content-end" style="list-style: none; width:100%;">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link text-light active">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/about" class="nav-link text-light active">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://twitter.com/BotBrocode" target="_blank" class="nav-link text-light">Our Twitter</a>
-                    </li>
-            </div>          
-        </nav>
+
+<!--- Image Slider -->
+<div id="slides" class="carousel slide" data-ride="carousel">
+<ul class="carousel-indicators">
+	<li data-target="#slides" data-slide-to="0" class="active"></li>
+	<li data-target="#slides" data-slide-to="1"></li>
+	<li data-target="#slides" data-slide-to="2"></li>
+</ul>
+	<div class="carousel-inner">
+
+		<div class="carousel-item active" style="height: 650px; background-image: url(static/images/sick.png); background-size: cover">  
+		
+		<div class="carousel-caption">
+			<h1 class="display-2">Tweet Generator</h1>
+			<h3> Pick a Tweet Number </h3>
+					
+		</div>
+	</div>
+	<div class="carousel-item" style="height: 650px; background-image: url(static/images/people.png); background-size: cover; background-position: center">
+	</div>
+
+		<div class="carousel-item" style="height: 650px; background-image: url(static/images/trump.png); background-size: cover; background-position: center">
+		</div>
+	</div>
+</div>
 
         <div class="content">
             {% block content %} {% endblock %}
         </div>
         
 
-        <!-- FOOTER -->
-
+<!--- Footer -->
+<footer>
+<div class="container-fluid padding">
+<div class="row text-center">
+	<div class="col-md-4">
+		<hr class="light">
+		<h5> Our Information </h5>
+		<hr class="light"> 
+		<p>555-555-5555</p>
+		<p>email@bootstrap.com</p>
+		<p>100 Street Name</p>
+		<p>City, State, 00000</p>
+	</div>
+	<div class="col-md-4">
+		<hr class="light">
+		<h5> Our hours </h5>
+		<hr class="light">
+		<p>Monday: 9am - 5pm</p>
+		<p>Saturday: 10am - 4pm </p>
+		<p>Sunday: closed</p>
+	</div>
+	<div class="col-md-4">
+		<hr class="light">
+		<h5> Our Address </h5>
+		<hr class="light">
+		<p>City, State, 11111</p>
+	</div>
+	<div class="col-12">
+		<hr class="light-100">
+		<h5> https://www.linkedin.com/in/andrewilliams22//h5>
+</div>
+</div>
+</footer>
 
 
         <!-- SCRIPTS -->

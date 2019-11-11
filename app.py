@@ -8,6 +8,7 @@ from datetime import datetime
 import sys
 from histogram import new_histogram
 from sampler import sample_by_frequency
+from markov import Markogram
 #import tweeter 
 
 consumer_key = os.getenv('consumer_key')
@@ -38,8 +39,11 @@ class Display:
             words = f.read().split()
         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
 
+        m = Markogram(words)
+        self.message = m.get_string(self.count)
 
-        return render_template('tweet.html')
+
+        return render_template('tweet.html', tweet=self.message, time=datetime.now())
 
 
 
@@ -94,7 +98,7 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
-    
+
 #     app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
 
 
