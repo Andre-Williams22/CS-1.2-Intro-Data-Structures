@@ -7,7 +7,17 @@ from utils import time_it
 # one fish two fish red fish blue fish
 
 def sample_by_frequency(histogram):
-    """select a word based on frequency"""
+    """return a word from this histogram, randomly sampled by weigthinhg each word's probability
+    of being chosen by its observed frequency. """
+    # tokens = sum([count for word, count in histogram]) #count total tokens
+    # dart = random.randint(1, tokens) # throws a dart on number line
+    # fence = 0
+    # for word, count in histogram: #loops over each word and its counts
+    #     fence += count #add the count to the fence which moves fence to the right of number line
+    #     if fence >= dart: #checks if words fence is past dart
+    #         return  word #fence is past the dart so choose this word
+
+
     rand_val = random.random()
     total = 0
     percent_range = 0

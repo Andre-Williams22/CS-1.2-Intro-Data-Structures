@@ -3,55 +3,89 @@ import random
 import sys
 
 class Markogram(dict):
-    def __init__(self, words=None):
+    def __init__(self, words):
         """Initialize this histogram as a new dict and count given words."""
-        super(Markogram, self).__init__()
+        super().__init__()
         # Add properties to track useful word counts for this histogram
         self.types = 0  # Count of distinct word types in this histogram
-        self.tokens = 1  # Total count of all word tokens in this histogram
+        self.tokens = 0 # Total count of all word tokens in this histogram
         # Count words in given list, if any
 
         if words is not None:
-            prev = words[0]
-            for index in range(1, len(words)-1):
-                self.add_count(words[index], prev)
-                prev = words[index]
-            for keys in self.keys():
-                self[keys] = Dictogram(self[keys])
+            for word in words:
+                self.add_count(word)
+        else:
+            for i in range(len(words)):
+                self[words] = Dictogram([words[i+1]]) # creates a new dictogram for the word
 
-    def add_count(self, word, prev):
+        
+
+    def add_count(self, word):
         """adds word to markogram"""
-        if not prev in self.keys():
-            self[prev] = []
+        if not word in self.keys():
+            self[word] = Dictogram()
             self.types += 1
-        self[prev].append(word)
+        else: 
+            self[word][1] += 1 
         self.tokens += 1
 
     def sample(self, key):
         """gets a random word  that appears after key"""
-        return self[key].sample()
+        total = self.tokens
+        sum_prob = 0
+        prediction = random.random()
+        for key in self.keys():
+            prob = self[key][1]/total
+            if prediction > sum_prob and prediction <= sum_prob + prob:
+                return key 
+            sum_prob += prob
 
-    def get_string(self, len=1):
+    def get_string(self, length=10):
         """returns a string of len based on markov's chain"""
         start = random.choice(list(self.keys()))
-        strin = start
-        prev = start
-        for _ in range(len-1):
-            prev = self.sample(prev)
-            strin += f" {prev}"
-        strin += "."
-        return strin.capitalize()
+        strings = [start]
+        
+        for _ in range(length-1):
+            next_word = self.sample(start)[0]
+            strings.append(next_word)
+        return strings
+
+    def new_sentence(self, count=10):
+        words = self.get_string(count)
+        return ' '.join(words).capitalize() + '.'
+
+
+def iframe(tag):
+    ''' takes in the str and adds iframe tag and takes it into a link'''
+    print(f'IFRAME TAG: {tag}')
+    tag = tag.split(' ')
+    print(tag)
+    gifs = []
+    for index in range(len(tag)):
+        print(f'EACH WORD: {tag[index]}')
+        if "https://" in tag[index]:
+            print('HELLOOOOOOOOOOOOO')
+            print(f"URL{tag[index]}")
+            gifs.append(tag[index])
+
+    return " ".join(tag), gifs
+
+
+
+
+
 
 
 
 if __name__ == "__main__":
-    with open("bro_code.txt", 'r') as f:
-        words = f.read()
-    # words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda!"
+    
+        
+    words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com"
     dic = Markogram(words.split())
     # for key in dic.keys():
     #     print(f"{key}: {dic[key]}")
     # print(dic.sample('a'))
     # print(f"tokens: {dic.tokens}")
     # print(f"types: {dic.types}")
-    print(dic.get_string(10))
+    #print(dic.get_string(10))
+    print(iframe(words))
