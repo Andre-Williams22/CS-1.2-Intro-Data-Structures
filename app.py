@@ -8,8 +8,8 @@ from datetime import datetime
 import sys
 from histogram import new_histogram
 from sampler import sample_by_frequency
-from markov import Markogram
-#import tweeter 
+from markov import Markogram, iframe
+
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -34,24 +34,24 @@ class Display:
 
     def tweet_page(self):
         '''Renders the home page'''
-        file = "trump.csv"
-        with open(file, 'r') as f:
-            words = f.read().split()
+        # file = "trump.csv"
+        # with open(file, 'r') as f:
+        #     words = f.read().split()
+        words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com".split(' ')
+        # print(words)
+    
         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
 
         m = Markogram(words)
         self.message = m.get_string(self.count)
+        # print(self.message)
+        tweet, iframes = iframe(self.message)
+        # print(iframes)
 
 
-        return render_template('tweet.html', tweet=self.message, time=datetime.now())
+        return render_template('tweet.html', tweet=tweet,iframes=iframes, time=datetime.now())
 
 
-
-
-    # def send_tweet(self):
-    #     message = self.message
-    #     tweeter.tweet(message)
-    #     return redirect(url_for('home'))
 
     def home(self):
         return render_template('home.html')
@@ -69,10 +69,6 @@ def tweet():
     disp.message = ""
     disp.count = 7 #default
     return disp.tweet_page()
-
-# @app.route('/send_tweet', methods=['POST'])
-# def send_tweet():
-#     return disp.send_tweet()
 
 @app.route('/contact')
 def contact():
