@@ -53,6 +53,8 @@ class LinkedList(object):
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
 
+
+
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""

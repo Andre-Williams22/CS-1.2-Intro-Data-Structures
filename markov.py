@@ -11,23 +11,33 @@ class Markogram(dict):
         self.tokens = 0 # Total count of all word tokens in this histogram
         # Count words in given list, if any
 
-        if words is not None:
-            for word in words:
-                self.add_count(word)
+        for i in range(len(words)):
+            word = words[i]
+
+
+            try:
+                following_word = words[i+1]
+            except:
+                break
+
+        dictogram_word = self.get(word, None)
+
+        if dictogram_word is not None:
+            dictogram_word.add_count(following_word, 1)
+
         else:
-            for i in range(len(words)):
-                self[words] = Dictogram([words[i+1]]) # creates a new dictogram for the word
+                self[words] = Dictogram([following_word]) # creates a new dictogram for the word
 
         
 
-    def add_count(self, word):
-        """adds word to markogram"""
-        if not word in self.keys():
-            self[word] = Dictogram()
-            self.types += 1
-        else: 
-            self[word][1] += 1 
-        self.tokens += 1
+    # def add_count(self, word):
+    #     """adds word to markogram"""
+    #     if not word in self.keys():
+    #         self[word] = Dictogram()
+    #         self.types += 1
+    #     else: 
+    #         self[word][1] += 1 
+    #     self.tokens += 1
 
     def sample(self, key):
         """gets a random word  that appears after key"""
@@ -88,4 +98,4 @@ if __name__ == "__main__":
     # print(f"tokens: {dic.tokens}")
     # print(f"types: {dic.types}")
     #print(dic.get_string(10))
-    print(iframe(words))
+    print(dic)
