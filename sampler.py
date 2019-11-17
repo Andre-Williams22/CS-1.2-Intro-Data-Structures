@@ -47,6 +47,24 @@ def test_sample_by_frequency(hist):
         print(f"{keys} {test_hist[keys]} ")
 
 
+def non_uniform_sample(histogram): # creates a non-uniform sample function 
+    """ Generate a random word based on non-uniform distribution"""
+    words_frequency = 0 # create words_frequency 
+    for key, value in histogram.items(): # loop through histogram 
+        words_frequency += value # append words to words_frequency 
+    random_num = random.randint(0, words_frequency-1) # generate random number 
+    count = 0 # create count var 
+    for word, freq in histogram.items(): # loop through hist.items
+        count += freq # increment count by frequency 
+        if random_num < count: # check if random_num is less than count 
+            return word # return word
+
+
+
+
+
+
+
 if __name__ == "__main__":
     #word_counts = {'one': 1, 'fish': 4, 'two': 1, 'red': 1, 'blue': 1}
     #print(sample_by_frequency(word_counts))
