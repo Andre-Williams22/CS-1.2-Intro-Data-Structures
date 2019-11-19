@@ -93,9 +93,9 @@ class LinkedList(object):
             self.head = new_head
             self.tail = new_head
         else:
-            self.head.next = new_head
+            new_head.next = self.head
             self.head = new_head
-            self.next = self.next.head
+
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -107,13 +107,10 @@ class LinkedList(object):
             return 0
         new_node = self.head
         while new_node is not None:
-            # new_node.next
             if new_node.data == quality:
-                new_node.next
-                return True
+                return new_node.data
             else:
-                new_node.next
-            return new_node.next 
+                return new_node.next 
             
 
     def delete(self, item):
