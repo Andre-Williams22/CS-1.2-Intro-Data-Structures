@@ -103,14 +103,15 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-        if self.is_empty():
-            return 0
-        new_node = self.head
-        while new_node is not None:
-            if new_node.data == quality:
-                return new_node.data
-            else:
-                return new_node.next 
+
+        node = self.head 
+
+        while node is not None:
+            if quality(node.data) == True:
+                return node.data
+            node = node.next
+
+        return None  
             
 
     def delete(self, item):
@@ -121,17 +122,40 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        if not self.head:
-            pass
-        elif item == 0:
+        if self.length() == 0:
+            raise ValueError('Item not found: {}'.format(item))
+
+        if self.head.data == item:
             self.head = self.head.next
-        else: 
-            iterative_node = self.head
-            while item >1 and iterative_node.next:
-                iterative_node = iterative_node.next
-                item -= 1
-            if iterative_node.next:
-                iterative_node.next = iterative_node.next.next
+            if self.length() == 0:
+                self.tail = None
+            return
+            
+        
+        current_node = self.head
+        prev_node = None
+
+        found = False 
+
+        while current_node is not None:
+            if self.head == self.tail:
+                self.head = None 
+                self.tail = None
+            if current_node.data == item:
+                prev_node.next = current_node.next
+                found = True
+                if self.head == prev_node:
+                    self.head = prev_node
+                if self.tail == current_node:
+                    self.tail = prev_node
+                prev_node = current_node
+                current_node = current_node.next 
+
+        if found == False:
+            raise ValueError('Item not found: {}'.format(item))
+                
+
+
 
 
 def test_linked_list():

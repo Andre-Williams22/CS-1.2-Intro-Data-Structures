@@ -8,8 +8,8 @@ from datetime import datetime
 import sys
 from histogram import new_histogram
 from sampler import sample_by_frequency
-from markov import Markogram, iframe
-
+from markov import *
+import sentence 
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -42,14 +42,14 @@ class Display:
     
         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
 
-        m = Markogram(words)
-        self.message = m.get_string(self.count)
+        m = make_markov_model(words)
+        self.message = m
         # print(self.message)
-        tweet, iframes = iframe(self.message)
+        tweet = (self.message)
         # print(iframes)
 
 
-        return render_template('tweet.html', tweet=tweet,iframes=iframes, time=datetime.now())
+        return render_template('tweet.html', tweet=tweet, time=datetime.now())
 
 
 
