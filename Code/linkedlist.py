@@ -1,5 +1,5 @@
 #!python
-
+from utils import time_it
 
 class Node(object):
 
@@ -33,7 +33,7 @@ class LinkedList(object):
     def __repr__(self):
         """Return a string representation of this linked list."""
         return 'LinkedList({!r})'.format(self.items())
-
+    @time_it 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
         Best and worst case running time: O(n) for n items in the list (length)
@@ -48,13 +48,13 @@ class LinkedList(object):
             node = node.next  # O(1) time to reassign variable
         # Now list contains items from all nodes
         return items  # O(1) time to return list
-
+    @time_it 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
 
 
-
+    @time_it 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
@@ -68,7 +68,7 @@ class LinkedList(object):
             node = node.next 
             count += 1
         return count
-
+    @time_it 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         TODO: Running time: O(n) Why and under what conditions?"""
@@ -82,7 +82,7 @@ class LinkedList(object):
         else:
             self.tail.next = new  
             self.tail = new
-
+    @time_it 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
@@ -96,7 +96,7 @@ class LinkedList(object):
             new_head.next = self.head
             self.head = new_head
 
-
+    @time_it 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
@@ -113,7 +113,7 @@ class LinkedList(object):
 
         return None  
             
-
+    @time_it 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?

@@ -16,6 +16,7 @@ def unique_words(histogram):
     total = len(histogram)
     return total
 
+
 def frequency(histogram, word):
     '''returns frequency of a word'''
     if word.lower() in histogram:
@@ -27,7 +28,7 @@ if __name__ == '__main__':
     
     with open(sys.argv[1],'r') as file:
         text = file.read()
-        text = re.sub(r'[^a-zA-Z\s]', '', text)
+        text = re.sub(r'[^a-zA-Z\s]', '', text) # type in the name of the file you want to be read by the code
         text = text.split()
     
     # for word in text:
@@ -38,4 +39,4 @@ if __name__ == '__main__':
     print(dict)
 
     print(unique_words(new_histogram(text)))
-    print(frequency(new_histogram(text), sys.argv[2]))
+    print(frequency(new_histogram(text), sys.argv[1]))
