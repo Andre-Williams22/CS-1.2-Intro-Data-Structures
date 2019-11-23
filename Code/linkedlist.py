@@ -160,7 +160,7 @@ class LinkedList(object):
         while node is not None:
             node = node.next
 
-
+    @time_it
     def reinstate(self, old_node, new_node):
         found = False
         if self.length() == 0:
@@ -204,7 +204,7 @@ def test_linked_list():
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
             print('delete({!r})'.format(item))
-            ll.delete(item)
+            ll.reinstate('B','A')
             print('list: {}'.format(ll))
 
         print('head: {}'.format(ll.head))
