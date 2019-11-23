@@ -153,6 +153,12 @@ class LinkedList(object):
 
         if found == False:
             raise ValueError('Item not found: {}'.format(item))
+
+
+    def traverse(self):
+        node = self.head
+        while node is not None:
+            node = node.next
                 
 
 
