@@ -159,10 +159,30 @@ class LinkedList(object):
         node = self.head
         while node is not None:
             node = node.next
-                
 
 
+    def reinstate(self, old_node, new_node):
+        found = False
+        if self.length() == 0:
+            raise ValueError('Item not found: {}'.format(old_node))
 
+
+        if self.head.data == old_node:
+            self.head = new_node
+            if self.length() == 0:
+                self.tail = None
+            return True
+
+        current_node = self.head
+
+        while current_node is not None:
+            if current_node.data == old_node:
+                current_node = new_node
+                found = True
+            current_node = current_node.next
+
+        if found == False:
+            raise ValueError('Item not found: {}'.format(old_node))
 
 def test_linked_list():
     ll = LinkedList()
