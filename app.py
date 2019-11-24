@@ -2,14 +2,10 @@ from flask import Flask,render_template,request,jsonify
 import tweepy
 from textblob import TextBlob
 import os
-import random 
-import requests
-from datetime import datetime 
+import random  
 import sys
 from histogram import new_histogram
-from sampler import sample_by_frequency
-from markov import *
-import sentence 
+from markov import Markogram
 from utils import good_words
 
 consumer_key = os.getenv('consumer_key')
