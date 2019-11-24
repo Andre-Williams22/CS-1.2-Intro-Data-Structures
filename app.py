@@ -10,6 +10,7 @@ from histogram import new_histogram
 from sampler import sample_by_frequency
 from markov import *
 import sentence 
+from utils import good_words
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -22,46 +23,53 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
+path = 'trump.csv'
+words = good_words(path)
+markov = Markogram(words)
 app = Flask(__name__)
 
-class Display:
-    def __init__(self, *args, **kwargs):
-        self.message = ''
-        self.count = 10
 
-    def contact(self):
-        return render_template('contact.html')
+# class Display:
+#     def __init__(self, *args, **kwargs):
+#         self.message = ''
+#         self.count = 10
 
-    def tweet_page(self):
-        '''Renders the home page'''
-        # file = "trump.csv"
-        # with open(file, 'r') as f:
-        #     words = f.read().split()
-        words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com".split(' ')
-        # print(words)
+#     def contact(self):
+#         return render_template('contact.html')
+
+#     def tweet_page(self):
+#         '''Renders the home page'''
+#         # file = "trump.csv"
+#         # with open(file, 'r') as f:
+#         #     words = f.read().split()
+#         words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com".split(' ')
+#         # print(words)
     
-        self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
+#         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
 
-        m = make_markov_model(words)
-        self.message = m
-        # print(self.message)
-        tweet = (self.message)
-        # print(iframes)
-
-
-        return render_template('tweet.html', tweet=tweet, time=datetime.now())
+#         m = make_markov_model(words)
+#         self.message = m
+#         # print(self.message)
+#         tweet = (self.message)
+#         # print(iframes)
 
 
-
-    def home(self):
-        return render_template('home.html')
+    #     return render_template('tweet.html', tweet=tweet, time=datetime.now())
 
 
 
-disp = Display()
+    # def home(self):
+    #     return render_template('home.html')
+
+
+
+#disp = Display()
 @app.route('/')
 def home():
-    return disp.home()
+    num = request.args.get('num',20)
+    sentence = markov.new_sentence(int(num))
+
+    return render_template('home.html', sentence=sentence, num=num)
 
 
 @app.route('/tweet')
@@ -72,7 +80,7 @@ def tweet():
 
 @app.route('/contact')
 def contact():
-    return disp.contact()
+    return render_template('contact.html')
 
 # @app.route("/")
 # def index():

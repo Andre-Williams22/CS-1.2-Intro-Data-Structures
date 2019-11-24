@@ -39,7 +39,7 @@ class Dictogram(dict):
             return 0 
 
 
-    def sample(self):
+    def sample(self, amount=1):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
@@ -51,6 +51,11 @@ class Dictogram(dict):
             if prediction > sum_prob and prediction <= sum_prob + prob:
                 return key 
             sum_prob += prob
+
+    def get_sentence(self, amount=10):
+        words = self.sample(amount)
+        return ' '.join(words).capitalize() + '.'
+
 
 
 def print_histogram(word_list):
