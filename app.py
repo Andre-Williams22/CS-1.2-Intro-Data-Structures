@@ -24,42 +24,6 @@ words = good_words(path)
 markov = Markogram(words)
 app = Flask(__name__)
 
-
-# class Display:
-#     def __init__(self, *args, **kwargs):
-#         self.message = ''
-#         self.count = 10
-
-#     def contact(self):
-#         return render_template('contact.html')
-
-#     def tweet_page(self):
-#         '''Renders the home page'''
-#         # file = "trump.csv"
-#         # with open(file, 'r') as f:
-#         #     words = f.read().split()
-#         words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com".split(' ')
-#         # print(words)
-    
-#         self.count = int(request.args.get('words')) # takes the number of words the user wants in the sentence
-
-#         m = make_markov_model(words)
-#         self.message = m
-#         # print(self.message)
-#         tweet = (self.message)
-#         # print(iframes)
-
-
-    #     return render_template('tweet.html', tweet=tweet, time=datetime.now())
-
-
-
-    # def home(self):
-    #     return render_template('home.html')
-
-
-
-#disp = Display()
 @app.route('/')
 def home():
 
@@ -98,7 +62,5 @@ def contact():
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)
-
-   # app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
 
 
