@@ -97,8 +97,8 @@ def contact():
 #     return jsonify({"success":True,"tweets":t})
 
 if __name__ == '__main__':
-    #app.run(debug=True, port=8080)
+    app.run(debug=True, port=8080)
 
-    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
+   # app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
 
 
