@@ -46,15 +46,21 @@ class Markogram(dict):
         self.tokens += 1
 
     def sample(self, key):
-        """gets a random word  that appears after key"""
-        total = self.tokens
-        sum_prob = 0
-        prediction = random.random()
-        for key in self.keys():
-            prob = self[key][1]/total
-            if prediction > sum_prob and prediction <= sum_prob + prob:
-                return key 
-            sum_prob += prob
+        """gets a random word that appears after key"""
+        histo = self.get(key, None)
+
+        if histo:
+            return histo.sample(1)
+        else:
+            raise KeyError('Invalid Word')
+        # total = self.tokens
+        # sum_prob = 0
+        # prediction = random.random()
+        # for key in self.keys():
+        #     prob = self[key][1]/total
+        #     if prediction > sum_prob and prediction <= sum_prob + prob:
+        #         return key 
+        #     sum_prob += prob
 
     def get_string(self, length=10):
         """returns a string of len based on markov's chain"""
@@ -153,15 +159,15 @@ class Markogram(dict):
 
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
         
-    words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com"
-    dic = Markogram(words.split())
-    # for key in dic.keys():
-    #     print(f"{key}: {dic[key]}")
-    # print(dic.sample('a'))
-    # print(f"tokens: {dic.tokens}")
-    # print(f"types: {dic.types}")
-    #print(dic.get_string(10))
-    print(dic)
+#     words = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda! https://google.com"
+#     dic = Markogram(words.split())
+#     # for key in dic.keys():
+#     #     print(f"{key}: {dic[key]}")
+#     # print(dic.sample('a'))
+#     # print(f"tokens: {dic.tokens}")
+#     # print(f"types: {dic.types}")
+#     #print(dic.get_string(10))
+#     print(dic)

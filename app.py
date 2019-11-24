@@ -66,17 +66,17 @@ app = Flask(__name__)
 #disp = Display()
 @app.route('/')
 def home():
-    num = request.args.get('num',20)
-    sentence = markov.new_sentence(int(num))
 
-    return render_template('home.html', sentence=sentence, num=num)
+    return render_template('home.html')
 
 
 @app.route('/tweet')
 def tweet():
-    disp.message = ""
-    disp.count = 7 #default
-    return disp.tweet_page()
+    # disp.message = ""
+    # disp.count = 7 #default
+    num = request.args.get('num',20)
+    sentence = markov.new_sentence(int(num))
+    return render_template('tweet.html', sentence=sentence)
 
 @app.route('/contact')
 def contact():
@@ -101,8 +101,8 @@ def contact():
 #     return jsonify({"success":True,"tweets":t})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    #app.run(debug=True, port=8080)
 
-#     app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
+    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT', 80))
 
 

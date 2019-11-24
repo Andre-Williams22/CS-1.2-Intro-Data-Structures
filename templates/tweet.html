@@ -7,11 +7,9 @@
 
     <!-- TWEET -->
     <div class='tweet'>
-            {{ tweet }}
+            {{ sentence }}
+            {{ num }}
     </div>
-    {% for item in iframes%}
-        <iframe src={item} ></iframe>
-    {% endfor %}
 
     <!--TWEET submit button-->
     <form action="/send_tweet" method="POST">
