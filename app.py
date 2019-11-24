@@ -32,8 +32,6 @@ def home():
 
 @app.route('/tweet')
 def tweet():
-    # disp.message = ""
-    # disp.count = 7 #default
     num = request.args.get('num',20)
     sentence = markov.new_sentence(int(num))
     return render_template('tweet.html', sentence=sentence)

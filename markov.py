@@ -82,20 +82,6 @@ class Markogram(dict):
         return ' '.join(words).capitalize() + '.'
 
 
-# def iframe(tag):
-#     ''' takes in the str and adds iframe tag and takes it into a link'''
-#     print(f'IFRAME TAG: {tag}')
-#     tag = tag.split(' ')
-#     print(tag)
-#     gifs = []
-#     for index in range(len(tag)):
-#         print(f'EACH WORD: {tag[index]}')
-#         if "https://" in tag[index]:
-#             print('HELLOOOOOOOOOOOOO')
-#             print(f"URL{tag[index]}")
-#             gifs.append(tag[index])
-
-#     return " ".join(tag), gifs
 # from dictogram import Dictogram 
 # from pprint import pprint
 # import random
