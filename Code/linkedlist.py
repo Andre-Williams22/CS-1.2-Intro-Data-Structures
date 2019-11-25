@@ -57,7 +57,7 @@ class LinkedList(object):
     @time_it 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
         if self.is_empty():
             return 0
@@ -71,21 +71,21 @@ class LinkedList(object):
     @time_it 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(n) Why and under what conditions?"""
+        TODO: Running time: O(1) Why and under what conditions? The item is being added to the last item in the list. It takes constant time."""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
 
         new = Node(item) # refers to the node class and creates a node object called new
         if self.is_empty(): # self refers to the linked list
-            self.head = new #
+            self.head = new # initialize the head node
             self.tail = new 
         else:
-            self.tail.next = new  
+            self.tail.next = new   
             self.tail = new
     @time_it 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) Why and under what conditions? The item is being added to the beginning of the list it takes constant time."""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
         new_head = Node(item)
@@ -99,25 +99,25 @@ class LinkedList(object):
     @time_it 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) Why and under what conditions? The item your looking for is the first item in the list
+        TODO: Worst case running time: O(n) Why and under what conditions? The item in the list could be the last item""" 
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
 
         node = self.head 
 
         while node is not None:
-            if quality(node.data) == True:
-                return node.data
-            node = node.next
+            if quality(node.data) == True: # check if data is equal to quality
+                return node.data # node is found
+            node = node.next # move to next node in the list
 
         return None  
             
     @time_it 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) Why and under what conditions? The item could be the first item in the list
+        TODO: Worst case running time: O(n) Why and under what conditions? the item could be the last item in the list"""
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
