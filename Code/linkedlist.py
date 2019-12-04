@@ -57,7 +57,7 @@ class LinkedList(object):
     @time_it 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(n) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions? Traverses through each item in the list"""
         # TODO: Loop through all nodes and count one for each
         if self.is_empty():
             return 0
@@ -161,7 +161,7 @@ class LinkedList(object):
             node = node.next
 
     @time_it
-    def reinstate(self, old_node, new_node):
+    def replace(self, old_node, new_node):
         found = False
         if self.length() == 0:
             raise ValueError('Item not found: {}'.format(old_node))
@@ -204,7 +204,7 @@ def test_linked_list():
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
             print('delete({!r})'.format(item))
-            ll.reinstate('B','A')
+            ll.replace('B','A')
             print('list: {}'.format(ll))
 
         print('head: {}'.format(ll.head))
