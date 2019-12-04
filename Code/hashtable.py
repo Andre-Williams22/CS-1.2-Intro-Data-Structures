@@ -110,11 +110,11 @@ class HashTable(object):
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
-        bucket = self.buckets[self._buckets_index(key)]
+        bucket = self.buckets[self._bucket_index(key)]
 
         for item_key, item_value in bucket:
-            if item_value == value:
-                bucket.replace((item_key, (key, value)) # update
+            if item_key == key:
+                bucket.delete(item_key, item_value) # update
             else:
                 bucket.append((key, value)) # insert 
 
