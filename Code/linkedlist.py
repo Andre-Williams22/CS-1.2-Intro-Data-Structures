@@ -131,10 +131,9 @@ class LinkedList(object):
                 self.tail = None
             return
             
+        prev_node = self.head
+        current_node = prev_node.next
         
-        current_node = self.head
-        prev_node = None
-
         found = False 
 
         while current_node is not None:
@@ -142,15 +141,20 @@ class LinkedList(object):
                 self.head = None 
                 self.tail = None
             if current_node.data == item:
-                prev_node.next = current_node.next
                 found = True
+                prev_node.next = current_node.next                
                 if self.head == prev_node:
                     self.head = prev_node
+                    return
                 if self.tail == current_node:
                     self.tail = prev_node
+                    return 
                 prev_node = current_node
                 current_node = current_node.next 
-
+        
+            
+            break
+           
         if found == False:
             raise ValueError('Item not found: {}'.format(item))
 
@@ -159,6 +163,7 @@ class LinkedList(object):
         node = self.head
         while node is not None:
             node = node.next
+            
 
     @time_it
     def replace(self, old_node, new_node):
@@ -179,6 +184,7 @@ class LinkedList(object):
             if current_node.data == old_node:
                 current_node = new_node
                 found = True
+                
             current_node = current_node.next
 
         if found == False:

@@ -36,7 +36,7 @@ class HashTable(object):
             for key, value in bucket.items(): # .items() returns a list of all keys and their values together 
                 all_keys.append(key)
         return all_keys
-    @time_it
+    #@time_it
     def values(self):
         """Return a list of all values in this hash table.
         TODO: Running time: O(n) due to traversing through every item in the list"""
@@ -49,7 +49,7 @@ class HashTable(object):
                 
         return all_values 
         
-    @time_it
+   # @time_it
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
         TODO: Running time: O(n) Why and under what conditions? Traversing through each item in th list""" 
@@ -58,7 +58,7 @@ class HashTable(object):
         for bucket in self.buckets:
             all_value_pairs.extend(bucket.items())
         return all_value_pairs
-    @time_it
+   # @time_it
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(n) Why and under what conditions? Because it takes each bucket times the length to traverse and acquire
@@ -74,7 +74,7 @@ class HashTable(object):
         #return self.size 
 
 
-    @time_it 
+    #@time_it 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(l) Why and under what conditions? It is the number of key value entries divided by the number of buckets
@@ -102,8 +102,8 @@ class HashTable(object):
         for item_key, item_value in bucket.items():
             if item_key == key:
                 return item_value
-            else:
-                raise KeyError('Key not found: {}'.format(key))
+            
+        raise KeyError('Key not found: {}'.format(key))
 
 
     def set(self, key, value):
@@ -118,9 +118,9 @@ class HashTable(object):
 
         for item_key, item_value in bucket.items():
             if item_key == key:
-                bucket.delete(item_key, item_value) # update
-            else:
-                bucket.append((key, value)) # insert 
+                bucket.delete((item_key, item_value)) # update
+            
+        bucket.append((key, value)) # insert 
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
@@ -132,11 +132,14 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
         bucket = self.buckets[self._bucket_index(key)]
-        for item_key, item_value in bucket.items():
-            if item_key == key:
-                bucket.delete((item_key, item_value))
+        
+        try:
+            for item_key, item_value in bucket.items():
+                if item_key == key:
+                    bucket.delete((item_key, item_value))            
+        except:
 
-        raise KeyError('Delete Failed: {}'.format(key))
+            raise KeyError('Key not found: {}'.format(key))
 
 
 
