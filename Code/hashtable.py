@@ -2,6 +2,7 @@
 
 from linkedlist import LinkedList
 
+from utils import time_it
 
 class HashTable(object):
 
@@ -27,25 +28,28 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(l) due to the average length of the linkedlist in each bucket."""
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
-            for key, value in bucket.items(): #iterates over all keys and values in bucket 
+            #iterates over all keys and values in bucket
+            for key, value in bucket.items(): # .items() returns a list of all keys and their values together 
                 all_keys.append(key)
         return all_keys
-
+    @time_it
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(n) Why and under what conditions? If you have to traverse every item in list"""
+        TODO: Running time: O(n) due to traversing through every item in the list"""
         # TODO: Loop through all buckets
         # TODO: Collect all values in each bucket
-        values = 0
-        for item in self.buckets:
-            values += 1
-        return values 
+        all_values = []
+        for bucket in self.buckets:
+            for key, value in bucket.items():
+                all_values.append(value)
+                
+        return all_values 
         
-
+    @time_it
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
         TODO: Running time: O(n) Why and under what conditions? Traversing through each item in th list""" 
@@ -54,7 +58,7 @@ class HashTable(object):
         for bucket in self.buckets:
             all_value_pairs.extend(bucket.items())
         return all_value_pairs
-
+    @time_it
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(n) Why and under what conditions? Because it takes each bucket times the length to traverse and acquire
@@ -70,7 +74,7 @@ class HashTable(object):
         #return self.size 
 
 
-
+    @time_it 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: O(l) Why and under what conditions? It is the number of key value entries divided by the number of buckets
@@ -94,12 +98,12 @@ class HashTable(object):
         # TODO: If found, return value associated with given key
         # TODO: Otherwise, raise error to tell user get failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
-        bucket = self.buckets[self._bucket_index(key)]
-        for item_key, item_value in bucket:
+        bucket = self.buckets[hash(key) % len(self.buckets)]
+        for item_key, item_value in bucket.items():
             if item_key == key:
                 return item_value
-            
-        raise KeyError('Key not found: {}'.format(key))
+            else:
+                raise KeyError('Key not found: {}'.format(key))
 
 
     def set(self, key, value):
@@ -112,7 +116,7 @@ class HashTable(object):
         # TODO: Otherwise, insert given key-value entry into bucket
         bucket = self.buckets[self._bucket_index(key)]
 
-        for item_key, item_value in bucket:
+        for item_key, item_value in bucket.items():
             if item_key == key:
                 bucket.delete(item_key, item_value) # update
             else:
