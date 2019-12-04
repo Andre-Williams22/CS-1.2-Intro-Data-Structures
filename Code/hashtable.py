@@ -92,7 +92,7 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(1) best case and average case O(l) because the item could be the first one
-        looked at or the item could be last which in this case would take (n/b) time which is O(l) Why and under what conditions?"""
+        looked at or the item could be last which in this case would take (n/b) time which is O(l)"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, return value associated with given key
@@ -125,7 +125,7 @@ class HashTable(object):
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(1) because we could be deleting the first element in the linkedlist. O(l) average case because it depends 
-        on the load factor or average length of the linkedlist in the buckets. Why and under what conditions?"""
+        on the load factor or average length of the linkedlist in the buckets."""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
         # TODO: If found, delete entry associated with given key
