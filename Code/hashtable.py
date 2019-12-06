@@ -81,13 +81,14 @@ class HashTable(object):
         which is the average length of the linkedlist. Has to check through each bucket and its length to find key"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
-        bucket = self.buckets[self._bucket_index(key)]
+        
+        bucket = self.buckets[hash(key) % len(self.buckets)]
 
-        for item_key, item_value in bucket.items():
+        for item_key, _ in bucket.items(): # grabs item_key and item_value
                 if item_key == key:
                     return True
-                else:
-                    return False
+        return False
+                
                     
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
@@ -132,13 +133,12 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
         bucket = self.buckets[self._bucket_index(key)]
-        
-        try:
-            for item_key, item_value in bucket.items():
-                if item_key == key:
-                    bucket.delete((item_key, item_value))            
-        except:
 
+        item = bucket.find(lambda item: item[0] == key)
+        
+        if item is not None:
+            bucket.delete(item)
+        else:
             raise KeyError('Key not found: {}'.format(key))
 
 

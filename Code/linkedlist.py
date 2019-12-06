@@ -122,41 +122,37 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        if self.length() == 0:
-            raise ValueError('Item not found: {}'.format(item))
-
-        if self.head.data == item:
-            self.head = self.head.next
-            if self.length() == 0:
-                self.tail = None
-            return
-            
-        prev_node = self.head
-        current_node = prev_node.next
         
-        found = False 
-
+        # initializes start
+        current_node = self.head
+        prev_node = None 
+        # while there are no more nodes in the list
         while current_node is not None:
-            if self.head == self.tail:
-                self.head = None 
-                self.tail = None
+            # node with item's found
             if current_node.data == item:
-                found = True
-                prev_node.next = current_node.next                
-                if self.head == prev_node:
-                    self.head = prev_node
-                    return
-                if self.tail == current_node:
+                # if item we're removing is at head
+                if prev_node is None:
+                    # make head next node
+                    self.head = current_node.next
+                    # head is also tail
+                    if current_node.next is None:
+                        self.tail = prev_node
+                    # item we want to remove is at tail 
+                elif current_node.next is None: 
+                    prev_node.next = None
                     self.tail = prev_node
-                    return 
+                #item we want to remove is not there
+                else:
+                    prev_node.next = current_node.next 
+
+                return 
+                # havent found item but keep traversing linkedlist
+            else:
                 prev_node = current_node
-                current_node = current_node.next 
-        
-            
-            break
-           
-        if found == False:
-            raise ValueError('Item not found: {}'.format(item))
+                current_node = current_node.next
+
+        raise ValueError(f'Item not found: {item}')
+
 
 
     def traverse(self):
@@ -210,7 +206,7 @@ def test_linked_list():
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
             print('delete({!r})'.format(item))
-            ll.replace('B','A')
+            ll.delete(item)
             print('list: {}'.format(ll))
 
         print('head: {}'.format(ll.head))
