@@ -63,10 +63,10 @@ class LinkedList(object):
             return 0
         
         node = self.head
-        count = 0
-        while node is not None:
-            node = node.next 
-            count += 1
+        count = 0 # create a counter
+        while node is not None: # iterate through node
+            node = node.next  
+            count += 1 # add to counter
         return count
     @time_it 
     def append(self, item):
@@ -78,7 +78,7 @@ class LinkedList(object):
         new = Node(item) # refers to the node class and creates a node object called new
         if self.is_empty(): # self refers to the linked list
             self.head = new # initialize the head node
-            self.tail = new 
+            self.tail = new # initialize the tail 
         else:
             self.tail.next = new   
             self.tail = new
@@ -90,7 +90,7 @@ class LinkedList(object):
         # TODO: Prepend node before head, if it exists
         new_head = Node(item)
         if self.is_empty():
-            self.head = new_head
+            self.head = new_head 
             self.tail = new_head
         else:
             new_head.next = self.head

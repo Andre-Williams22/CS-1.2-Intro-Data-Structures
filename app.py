@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,jsonify
+from flask import Flask,render_template,request,jsonify, redirect, url_for
 import tweepy
 from textblob import TextBlob
 import os
@@ -7,6 +7,7 @@ import sys
 from histogram import new_histogram
 from markov import Markogram
 from utils import good_words
+
 
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
@@ -23,6 +24,8 @@ path = 'trump.csv'
 words = good_words(path)
 markov = Markogram(words)
 app = Flask(__name__)
+
+
 
 @app.route('/')
 def home():
@@ -49,6 +52,13 @@ def contact():
         # t.append(tweet.full_text)
 #     return jsonify({"success":True,"tweets":t})
     return render_template('contact.html')
+
+@app.route('/send_tweet', methods=["POST"])
+def send_tweet():
+    word = request.form.get('tweet_sentence')
+    api.update_status(status=word)
+    return redirect(url_for('home'))
+
 
 # @app.route("/")
 # def index():
