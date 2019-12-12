@@ -25,7 +25,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 # setup for markov chain and data 
-path = 'trump.csv'
+path = 'trumps_speech.csv'
 words = good_words(path)
 markov = HigherOrderMarkov(words)
 app = Flask(__name__)

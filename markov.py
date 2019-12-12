@@ -193,7 +193,7 @@ class HigherOrderMarkov(dict):
 #     print(dic)
 
 if __name__ == "__main__":
-    path = 'trump.csv'
+    path = 'trumps_speech.csv'
     words = good_words(path)
     markov = HigherOrderMarkov(words)
 
