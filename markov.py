@@ -1,5 +1,5 @@
 from dictogram import Dictogram
-from random import choice
+from random import choice, randint
 import sys
 import random
 from utils import good_words
@@ -87,11 +87,11 @@ class HigherOrderMarkov(dict):
         self.order = order # the order of the markov chain
         if word_list:
             self.word_list = word_list # word list for later use
-            self._create_chain(word_list) # create a chain
+            self.create_chain(word_list) # create a chain
 
     def create_chain(self, word_list):
         n_words = len(word_list)
-        for i, key in enumerate(word_list):
+        for i, key1 in enumerate(word_list):
             if n_words > (i + 2): # use the order
                 key2 = word_list[i + 1]
                 word = word_list[i + 2]
@@ -102,7 +102,18 @@ class HigherOrderMarkov(dict):
 
     def walk(self, length=10):
         rand = randint(0, len(self.word_list))
-        key = (self.word_list[rand])
+        key = (self.word_list[rand], self.word_list[rand + 1])
+        tweet = key[0] + ' ' + key[1]
+
+
+        for _ in range(length):
+            word = choice(self[key])
+            tweet += ' ' + word
+            key = (key[1], word)
+
+
+        return tweet.capitalize() + '.'
+
 
 
 # from dictogram import Dictogram 
@@ -180,3 +191,11 @@ class HigherOrderMarkov(dict):
 #     # print(f"types: {dic.types}")
 #     #print(dic.get_string(10))
 #     print(dic)
+
+if __name__ == "__main__":
+    path = 'trump.csv'
+    words = good_words(path)
+    markov = HigherOrderMarkov(words)
+
+    tweet = markov.walk(15)
+    print(tweet)

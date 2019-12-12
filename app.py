@@ -5,10 +5,14 @@ import os
 import random  
 import sys
 from histogram import new_histogram
-from markov import Markogram
+from markov import HigherOrderMarkov
 from utils import good_words
 
+# for secrets
+from dotenv import load_dotenv
+load_dotenv()
 
+# Twitter API setup
 consumer_key = os.getenv('consumer_key')
 consumer_secret = os.getenv('consumer_secret')
 
@@ -20,9 +24,10 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
+# setup for markov chain and data 
 path = 'trump.csv'
 words = good_words(path)
-markov = Markogram(words)
+markov = HigherOrderMarkov(words)
 app = Flask(__name__)
 
 
@@ -36,7 +41,7 @@ def home():
 @app.route('/tweet')
 def tweet():
     num = request.args.get('words')
-    sentence = markov.new_sentence(int(num))
+    sentence = markov.walk(int(num))
     return render_template('tweet.html', sentence=sentence)
 
 # @app.route('/contact')
