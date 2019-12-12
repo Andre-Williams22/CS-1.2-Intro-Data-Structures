@@ -35,23 +35,23 @@ def home():
 
 @app.route('/tweet')
 def tweet():
-    num = request.args.get('num',20)
+    num = request.args.get('words')
     sentence = markov.new_sentence(int(num))
     return render_template('tweet.html', sentence=sentence)
 
-@app.route('/contact')
-def contact():
-    # search_tweet = request.form.get("search_query")
+# @app.route('/contact')
+# def contact():
+#     # search_tweet = request.form.get("search_query")
    
-    # t = []
-    # tweets = api.search(search_tweet, tweet_mode='extended')
-    # for tweet in tweets:
-    #     polarity = TextBlob(tweet.full_text).sentiment.polarity
-    #     subjectivity = TextBlob(tweet.full_text).sentiment.subjectivity
-    #     t.append([tweet.full_text,polarity,subjectivity])
-        # t.append(tweet.full_text)
-#     return jsonify({"success":True,"tweets":t})
-    return render_template('contact.html')
+#     # t = []
+#     # tweets = api.search(search_tweet, tweet_mode='extended')
+#     # for tweet in tweets:
+#     #     polarity = TextBlob(tweet.full_text).sentiment.polarity
+#     #     subjectivity = TextBlob(tweet.full_text).sentiment.subjectivity
+#     #     t.append([tweet.full_text,polarity,subjectivity])
+#         # t.append(tweet.full_text)
+# #     return jsonify({"success":True,"tweets":t})
+#     return render_template('contact.html')
 
 @app.route('/send_tweet', methods=["POST"])
 def send_tweet():

@@ -10,12 +10,11 @@
             {{ sentence }}
     </div>
 
-    <!-- submit button-->
-    <form action="/send_tweet">
-        <a href="/"><button type="button">Refresh</button></a>
-    </form>
-        <!-- tweet button-->
+    <!-- submit button--> 
     <form action="/send_tweet" method="POST">
+        <a href="/"><button type="button">Refresh</button></a>
+        <br>
+        <!-- tweet button-->
         <input type="hidden" name="tweet_sentence" value='{{ sentence }}'> 
             <button type="submit">Tweet It</button></a>
     </form>

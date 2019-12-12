@@ -81,6 +81,29 @@ class Markogram(dict):
         words = self.get_string(count)
         return ' '.join(words).capitalize() + '.'
 
+class HigherOrderMarkov(dict):
+    def __init__(self, word_list=None, order=2):
+        # TODO: use order
+        self.order = order # the order of the markov chain
+        if word_list:
+            self.word_list = word_list # word list for later use
+            self._create_chain(word_list) # create a chain
+
+    def create_chain(self, word_list):
+        n_words = len(word_list)
+        for i, key in enumerate(word_list):
+            if n_words > (i + 2): # use the order
+                key2 = word_list[i + 1]
+                word = word_list[i + 2]
+                if (key1, key2) not in self:
+                    self[(key1, key2)] = [word]
+                else:
+                    self[(key1, key2)].append(word)
+
+    def walk(self, length=10):
+        rand = randint(0, len(self.word_list))
+        key = (self.word_list[rand])
+
 
 # from dictogram import Dictogram 
 # from pprint import pprint
