@@ -110,7 +110,7 @@ class HigherOrderMarkov(dict):
             word = choice(self[key])
             tweet += ' ' + word
             key = (key[1], word)
-
+        
 
         return tweet.capitalize() + '.'
 
